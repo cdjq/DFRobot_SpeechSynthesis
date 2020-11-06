@@ -1,11 +1,21 @@
 #include "DFRobot_SpeechSynthesis.h"
-
+/*!
+   @file DFRobot_SpeechSynthesis.h
+   @brief DFRobot_SpeechSynthesis 类的实现
+   @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+   @licence     The MIT License (MIT)
+   @author [fengli](li.feng@dfrobot.com)
+   @version  V1.0
+   @date  2020-08-17
+   @get from https://www.dfrobot.com
+   @https://github.com/DFRobot/DFRobot_SpeechSynthesis
+*/
 
 DFRobot_SpeechSynthesis::DFRobot_SpeechSynthesis(){
 
 }
 
-void DFRobot_SpeechSynthesis::speskElish(String word){
+void DFRobot_SpeechSynthesis::speakElish(String word){
   uint16_t point = 0;
   _len=word.length();
   _unicode = (uint8_t *)malloc(_len+1);
@@ -14,9 +24,11 @@ void DFRobot_SpeechSynthesis::speskElish(String word){
     _index++;
   }
   sendPack(START_SYNTHESIS1,_unicode,_len);
+
   wait();
   _index =0;
   _len = 0;
+
   if (_unicode!=NULL){
     free (_unicode);
     _unicode=NULL;
@@ -26,7 +38,7 @@ void DFRobot_SpeechSynthesis::setVoice(uint8_t voc){
   String str="[v3]";
   if(voc > 9) voc = 9;
   str[2] = 48 + voc;
-  speskElish(str);
+  speakElish(str);
   DBG(str);
 }
 void DFRobot_SpeechSynthesis::setSpeed(uint8_t speed)
@@ -34,25 +46,27 @@ void DFRobot_SpeechSynthesis::setSpeed(uint8_t speed)
   String str="[s5]";
   if(speed > 9) speed = 9;
   str[2] = 48 + speed;
-  speskElish(str);
+  speakElish(str);
   DBG(str);
 }
 void DFRobot_SpeechSynthesis::setTone(uint8_t tone){
   String str="[t5]";
   if(tone > 9) tone = 9;
   str[2] = 48 + tone;
-  speskElish(str);
+  speakElish(str);
   DBG(str);
 }
 void DFRobot_SpeechSynthesis::setSoundType(eSoundType_t type)
 {
   String str;
-  if(type == MEAL) {
+  if(type == MALE) {
      str="[m51]";
-  }else if(type ==FEMEAL){
+  }else if(type ==FEMALE){
      str="[m3]";
+  }else if(type == DONALDDUCK){
+     str="[m54]";
   }
-  speskElish(str);
+  speakElish(str);
   DBG(str);
 }
 void DFRobot_SpeechSynthesis::setEnglishPron(eENpron_t pron)
@@ -63,12 +77,104 @@ void DFRobot_SpeechSynthesis::setEnglishPron(eENpron_t pron)
   }else if(pron ==WORD){
      str="[h2]";
   }
-  speskElish(str);
+  speakElish(str);
   DBG(str);
+}
+
+void DFRobot_SpeechSynthesis::setDigitalPron(eDigitalPron_t pron){
+  String str;
+  if(pron == NUMBER) {
+     str="[n1]";
+  }else if(pron ==NUMERIC){
+     str="[n2]";
+  }else if(pron == AUTOJUDGED){
+     str="[n0]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+void DFRobot_SpeechSynthesis::setSpeechStyle(eSpeechStyle_t style){
+  String str;
+  if(style == CATON) {
+     str="[f0]";
+  }else if(style ==SMOOTH){
+     str="[f1]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+
+void DFRobot_SpeechSynthesis::enablePINYIN(bool enable){
+  String str;
+  if(enable == true) {
+     str="[i1]";
+  }else if(enable ==false){
+     str="[i0]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+void DFRobot_SpeechSynthesis::setLanguage(eLanguage_t style){
+  String str;
+  if(style == CHINESEL) {
+     str="[g1]";
+  }else if(style ==ENGLISHL){
+     str="[g2]";
+  }else if(style == AUTOJUDGEL){
+     str="[g0]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+void DFRobot_SpeechSynthesis::setZeroPron(eZeroPron_t pron){
+  String str;
+  if(pron == ZREO) {
+     str="[o0]";
+  }else if(pron ==OU){
+     str="[o1]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+
+void DFRobot_SpeechSynthesis::setOnePron(eOnePron_t pron){
+  String str;
+  if(pron == YAO) {
+     str="[y0]";
+  }else if(pron ==CHONE){
+     str="[y1]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+void DFRobot_SpeechSynthesis::setNamePron(eNamePron_t pron){
+  String str;
+  if(pron == NAME) {
+     str="[r1]";
+  }else if(pron ==AUTOJUDGEDN){
+     str="[r0]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+
+void DFRobot_SpeechSynthesis::enableRhythm(bool enable){
+  String str;
+  if(enable == true) {
+     str="[z1]";
+  }else if(enable ==false){
+     str="[z0]";
+  }
+  speakElish(str);
+  DBG(str);
+}
+void DFRobot_SpeechSynthesis::reset(){
+
+  speakElish("[d]");
 
 }
 
-void DFRobot_SpeechSynthesis::speskChinese(String word){
+void DFRobot_SpeechSynthesis::speak(String word){
   uint32_t uni=0;
   uint8_t utf8State = 0;
 
@@ -319,30 +425,36 @@ void DFRobot_SpeechSynthesis::sendPack(uint8_t cmd,uint8_t* data,uint16_t len)
    break;
   }
 }
-DFRobot_SpeechSynthesis_IIC::DFRobot_SpeechSynthesis_IIC(TwoWire *pWire = &Wire, uint8_t address = I2C_ADDR){
+DFRobot_SpeechSynthesis_I2C::DFRobot_SpeechSynthesis_I2C(TwoWire *pWire, uint8_t address){
   _pWire = pWire;
   _deviceAddr = address;
 }
-bool DFRobot_SpeechSynthesis_IIC::begin(Stream *s){
-
-  uint8_t ack = 0;
-  _pWire->begin();
-  _pWire->setClock(16000);
-  speskElish("[n1]");
-  _pWire->beginTransmission(_deviceAddr);
-  if(_pWire->endTransmission() != 0){
-    DBG("bus data access error");
-    return false;
-   }
-  return true;
+DFRobot_SpeechSynthesis_I2C::~DFRobot_SpeechSynthesis_I2C(){
+  //_pWire->setClock(100000);
 }
-uint8_t DFRobot_SpeechSynthesis_IIC::sendCommand(uint8_t *head,uint8_t *data,uint8_t length)
+
+bool DFRobot_SpeechSynthesis_I2C::begin()
 {
-   _pWire->requestFrom(_deviceAddr, 10);
+uint8_t ack = 0;
+
+    _pWire->begin();
+    _pWire->setClock(8000);
+    delay(10);
+    speakElish("[n1]");
+    setVoice(5); 
+    setSpeed(5); 
+    setTone(5);  
+    setSoundType(FEMALE);
+    setEnglishPron(WORD);
+}
+uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uint8_t length)
+{
+   _pWire->requestFrom(_deviceAddr, 2);
    while (_pWire->available()) {
      _pWire->read();
     }
-
+  _pWire->setClock(8000);
+  delay(10);
   _pWire->beginTransmission(_deviceAddr);
   for(uint8_t i =0;i<5;i++){
      _pWire->write(head[i]);
@@ -366,11 +478,15 @@ uint8_t DFRobot_SpeechSynthesis_IIC::sendCommand(uint8_t *head,uint8_t *data,uin
       DBG("ERR_DATA_BUS");
       return ERR_DATA_BUS;
   }
+  //_pWire->setClock(100000);
+  delay(10);
   return ERR_OK;
 }
 
-uint8_t DFRobot_SpeechSynthesis_IIC::sendCommand(uint8_t *data,uint8_t length)
+uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *data,uint8_t length)
 {
+  _pWire->setClock(8000);
+  delay(10);
   _pWire->beginTransmission(_deviceAddr);
   for(uint8_t i =0;i<length;i++){
    _pWire->write(data[i]);
@@ -379,18 +495,23 @@ uint8_t DFRobot_SpeechSynthesis_IIC::sendCommand(uint8_t *data,uint8_t length)
       DBG("ERR_DATA_BUS");
       return ERR_DATA_BUS;
   }
+  //_pWire->setClock(100000);
+  delay(10);
   return ERR_OK;
 }
-uint8_t DFRobot_SpeechSynthesis_IIC::readACK(){
+uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
 
    uint8_t data = 0;
+  _pWire->setClock(8000);
+  delay(10);
    _pWire->requestFrom(_deviceAddr, 1);
    while (_pWire->available()) {
      data = _pWire->read();
      DBG(data,HEX);
     }
    return data;
-
+  _pWire->setClock(100000);
+  delay(10);
 }
 
 DFRobot_SpeechSynthesis_UART::DFRobot_SpeechSynthesis_UART(){
@@ -398,12 +519,17 @@ DFRobot_SpeechSynthesis_UART::DFRobot_SpeechSynthesis_UART(){
 
 }
 
-bool DFRobot_SpeechSynthesis_UART::begin(Stream *s){
-   _s = s;
+bool DFRobot_SpeechSynthesis_UART::begin(Stream &s){
+   _s = &s;
    if(_s == NULL){
     return false;
    } else {
-    speskElish("[n1]");
+    speakElish("[n1]");
+    setVoice(5); 
+    setSpeed(5); 
+    setTone(5);  
+    setSoundType(FEMALE);
+    setEnglishPron(WORD);
     return true;
    }
    
