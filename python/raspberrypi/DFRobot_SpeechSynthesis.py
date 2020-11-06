@@ -62,7 +62,7 @@ class DFRobot_SpeechSynthesis(object):
       head = [0xfd,0x00,0x00,0x01,0x00]
       if version_info.major == 2 and version_info.minor == 7:
          data = array.array('B', str)
-         print(data)
+         #print(data)
       #data1=np.array(list[str])
       else:
          data = list(str)
@@ -75,7 +75,7 @@ class DFRobot_SpeechSynthesis(object):
       head[1] = lenght>> 8
       head[2] = lenght & 0xff
       data1 = head +data2
-      print(data1)
+      #print(data1)
       self.read_ack(1)
       self.read_ack(1)
       self.write_cmd(data1)
@@ -112,7 +112,7 @@ class DFRobot_SpeechSynthesis(object):
       elif(type == DONALDDUCK):
         self.speak("[m54]")
       else:
-        print("no that type")
+        #print("no that type")
       
   def setTone(self, tone):
       list1 = [0xfd,0x00,0x06,0x01,0x00,91,116,54,93]
@@ -137,7 +137,7 @@ class DFRobot_SpeechSynthesis(object):
 class DFRobot_SpeechSynthesis_I2C(DFRobot_SpeechSynthesis): 
   def __init__(self ,bus ,addr):
     self.__addr = addr;
-    print(self.__addr)
+    #print(self.__addr)
     super(DFRobot_SpeechSynthesis_I2C, self).__init__(bus,0)
 
   '''
@@ -147,7 +147,7 @@ class DFRobot_SpeechSynthesis_I2C(DFRobot_SpeechSynthesis):
   '''
   def write_cmd(self, data):
         self.i2cbus.write_block_data(self.__addr,0x1,data)
-        print(data)
+        #print(data)
 
   '''
     @brief read the data from the register
@@ -173,7 +173,7 @@ class DFRobot_SpeechSynthesis_UART(DFRobot_SpeechSynthesis):
     @param value written data
   '''
   def write_cmd(self,data):
-      print(data)
+      #print(data)
       
       self.ser.write(data)
       #print(data[0])
@@ -192,7 +192,7 @@ class DFRobot_SpeechSynthesis_UART(DFRobot_SpeechSynthesis):
     #count = self.ser.inWaiting()
     a = [0]
     a[0] = self.ser.read(1)
-    print(a[0])
+    #print(a[0])
     if(a[0] == b'A'):
        return 0x41
     if(a[0] == b'O'):
