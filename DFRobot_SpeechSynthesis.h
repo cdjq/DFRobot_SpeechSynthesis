@@ -43,61 +43,90 @@ public:
   #define ERR_DATA_BUS      -1      //Data bus error
   #define ERR_IC_VERSION    -2      //Chip version does not match
 
-typedef enum{
-  CHINESE,
-  ENGLISH,
-  NONE,
-} eState_t;
 
 
-typedef enum{
-  CATON,
-  SMOOTH,
-} eSpeechStyle_t;
+  /**！
+    语音合成风格
+  */
+  typedef enum{
+    CATON,/**<一字一顿>*/
+    SMOOTH,/**<流畅>*/
+  } eSpeechStyle_t;
+  
+  /**
+    是否合成拼音
+  */
+  typedef enum{
+    PINYIN_ENABLE,/**<合成>*/
+    PINYIN_DISABLE,/**<不合成>*/
+  } ePinyin_t;
+  
+  /**
+    设置阿拉伯数字、度量单位、特殊符号等合成为中文或英文
+  */
+  typedef enum{
+    CHINESEL,/**<成为中文>*/
+    ENGLISHL,/**<成为英文>*/
+    AUTOJUDGEL,/**<自动判断>*/
+  } eLanguage_t;
+  
+  /**
+    一串数字的读法
+  */
+  typedef enum{
+    NUMBER,/**<电话号码>*/
+    NUMERIC,/**<数值>*/
+    AUTOJUDGED,/**<自动判断>*/
+  } eDigitalPron_t;
+  
+  /**
+    语音合成时"零"的读法
+  */
+  typedef enum{
+    ZREO,/**<读作'zero'>*/
+    OU,/**<读作'ou'>*/
+  } eZeroPron_t;
 
-typedef enum{
-  PINYIN_ENABLE,
-  PINYIN_DISABLE,
-} ePinyin_t;
-typedef enum{
-  CHINESEL,
-  ENGLISHL,
-  AUTOJUDGEL,
-} eLanguage_t;
+  /**
+    语音合成时"一"的读法
+  */
+  typedef enum{
+    YAO,/**<读作'yao'>*/
+    CHONE,/**<读作'yi'>*/
+  } eOnePron_t;
+  
+  /**
+    姓的读法
+  */
+  typedef enum{
+    NAME,/**<强制把所有的姓的汉字读作姓的读法>*/
+    AUTOJUDGEDN,/**<自动判断>*/
+  } eNamePron_t;
+  
+  /**
+    语音合成的声音的选择
+  */
+  typedef enum{
+   MALE,/**<男声>*/
+   FEMALE,/**<女声>*/
+   DONALDDUCK,/**<唐老鸭的声音>*/
+  } eSoundType_t;
 
-
-typedef enum{
-  NUMBER,
-  NUMERIC,
-  AUTOJUDGED,
-} eDigitalPron_t;
-
-typedef enum{
-  ZREO,
-  OU,
-} eZeroPron_t;
-
-typedef enum{
-  YAO,
-  CHONE,
-} eOnePron_t;
-
-typedef enum{
-  NAME,
-  AUTOJUDGEDN,
-} eNamePron_t;
-
-typedef enum{
- MALE,
- FEMALE,
- DONALDDUCK,
-} eSoundType_t;
-
-typedef enum{
- ALPHABET,
- WORD,
-} eENpron_t;
-
+  /**
+    英文的阅读方式
+  */
+  typedef enum{
+   ALPHABET,/**<拼写>*/
+   WORD,/**<单词>*/
+  } eENpron_t;
+  
+  typedef enum{
+    CHINESE,
+    ENGLISH,
+    NONE,
+  } eState_t;
+  
+public:
   /**
      @brief 构造函数
      @param pWire I2C总线指针对象，构造设备，可传参数也可不传参数，默认Wire

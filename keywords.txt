@@ -11,7 +11,8 @@ DFRobot_SpeechSynthesis	KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-
+DFRobot_SpeechSynthesis_UART	KEYWORD1
+DFRobot_SpeechSynthesis_I2C	KEYWORD1
 begin	KEYWORD2
 sleep	KEYWORD2
 wakeup	KEYWORD2
@@ -35,7 +36,7 @@ pauseSynthesis	KEYWORD2
 recoverSynthesis	KEYWORD2
 wait	KEYWORD2
 speakElish	KEYWORD2
-
+speak	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
