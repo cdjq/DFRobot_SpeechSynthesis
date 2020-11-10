@@ -12,15 +12,30 @@
 #include "DFRobot_SpeechSynthesis.h"
 DFRobot_SpeechSynthesis_I2C ss;
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
+  //设置语音的音量大小为5
+  //ss.setVoice(5);
+  //设置语音的播放速度为5
+  //ss.setSpeed(5);
+  //设置发音人为女性
+  //ss.setSoundType(ss.FEMALE);
+  //设置音调为5
+  //ss.setTone(5);
+  //设置英文以单词发音
+  //ss.setEnglishPron(ss.WORD);
+
   //初始化语音合成传感器
   ss.begin();
 }
 
 void loop() {
-  // 待合成的字符串
-  String str1="verifying flash memory 中国against put your setup code here,四川";
-  //合成语音
-  ss.speak(str1);
+  ss.speak("黑灰化肥发灰黑会挥发");
+  ss.speak("Hello, I'm Speech Synthesis module");
+  ss.speak("duck不必");
+  ss.speak("a b c d e f g");
+
+  /*使用文本控制标识控制*/
+  //音量标识
+  //ss.speak("[v3]Hello [v8]world");
+  //单词发音方式标识
+  //ss.speak("[h1]Hello [h2]world");
 }
