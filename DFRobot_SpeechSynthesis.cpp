@@ -328,8 +328,15 @@ void DFRobot_SpeechSynthesis::wait(){
 while(readACK()!=0x41)//等待语音合成完成
   {}
 while(readACK()!=0x4F)//等待语音播放完成
-  {}   
+  {} 
+  /*
+readACK();
+readACK();
+readACK();
+readACK();
 
+*/
+delay(10);
 }
 uint16_t DFRobot_SpeechSynthesis::getWordLen(){
 
@@ -438,8 +445,10 @@ bool DFRobot_SpeechSynthesis_I2C::begin()
 uint8_t ack = 0;
 
     _pWire->begin();
-    _pWire->setClock(8000);
-    delay(10);
+    //_pWire->setClock(100000);
+    uint8_t init = 0xAA;
+    sendCommand(&init,1);
+    delay(50);
     speakElish("[n1]");
     setVoice(5); 
     setSpeed(5); 
@@ -449,12 +458,11 @@ uint8_t ack = 0;
 }
 uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uint8_t length)
 {
-   _pWire->requestFrom(_deviceAddr, 2);
-   while (_pWire->available()) {
-     _pWire->read();
-    }
-  _pWire->setClock(8000);
-  delay(10);
+   //_pWire->requestFrom(_deviceAddr, 2);
+  // delay(10);
+  // while (_pWire->available()) {
+   //  _pWire->read();
+    //}
   _pWire->beginTransmission(_deviceAddr);
   for(uint8_t i =0;i<5;i++){
      _pWire->write(head[i]);
@@ -478,15 +486,15 @@ uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uin
       DBG("ERR_DATA_BUS");
       return ERR_DATA_BUS;
   }
-  //_pWire->setClock(100000);
-  delay(10);
+
+
   return ERR_OK;
 }
 
 uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *data,uint8_t length)
 {
-  _pWire->setClock(8000);
-  delay(10);
+
+
   _pWire->beginTransmission(_deviceAddr);
   for(uint8_t i =0;i<length;i++){
    _pWire->write(data[i]);
@@ -495,23 +503,21 @@ uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *data,uint8_t length)
       DBG("ERR_DATA_BUS");
       return ERR_DATA_BUS;
   }
-  //_pWire->setClock(100000);
-  delay(10);
+
+
   return ERR_OK;
 }
 uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
 
    uint8_t data = 0;
-  _pWire->setClock(8000);
-  delay(10);
+   delay(20);
    _pWire->requestFrom(_deviceAddr, 1);
-   while (_pWire->available()) {
+   delay(10);
+  if(_pWire->available()) {
      data = _pWire->read();
      DBG(data,HEX);
     }
    return data;
-  _pWire->setClock(100000);
-  delay(10);
 }
 
 DFRobot_SpeechSynthesis_UART::DFRobot_SpeechSynthesis_UART(){
@@ -572,10 +578,13 @@ uint8_t DFRobot_SpeechSynthesis_UART::sendCommand(uint8_t *data,uint8_t length)
 uint8_t DFRobot_SpeechSynthesis_UART::readACK(){
 
    uint8_t data = 0;
-   while (_s->available()) {
+      delay(10);
+	  DBG(data,HEX);
+   if(_s->available()) {
      data = _s->read();
      DBG(data,HEX);
     }
+	DBG(data,HEX);
    return data;
 
 }
