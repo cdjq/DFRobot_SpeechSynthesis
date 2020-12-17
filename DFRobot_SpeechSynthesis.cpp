@@ -177,26 +177,27 @@ void DFRobot_SpeechSynthesis::reset(){
 void DFRobot_SpeechSynthesis::speak(String word){
   uint32_t uni=0;
   uint8_t utf8State = 0;
-
+  DBG("\n");
   uint16_t point = 0;
   if (_utf8!=NULL){
     free (_utf8);
     _utf8=NULL;
-  }
+  }DBG("\n");
   _len=word.length(); //总长度
   _utf8 = (uint8_t *)malloc(_len+1);
   if(_utf8==NULL){
    DBG("no memory");
    return;
   }
+  DBG("_len=");DBG(_len);
   
-  
-  for(int i=0;i<_len;i++){
+  for(int i=0;i<=_len;i++){
     _utf8[i]= word[i]; //总的utf8码
   }
-  
-  
+  DBG("\n");
+  word="";
   uint16_t len1 = getWordLen();
+  DBG("len1=");DBG(len1);
   _unicode = (uint8_t *)malloc(len1+1);
   while(_index < _len){
     if(_utf8[_index] >= 0xfc){
@@ -339,11 +340,12 @@ readACK();
 delay(10);
 }
 uint16_t DFRobot_SpeechSynthesis::getWordLen(){
-
-uint8_t index = 0;
-uint32_t uni=0;
-uint16_t length = 0;
-while(index < _len){
+  uint16_t index = 0;
+  uint32_t uni=0;
+  uint16_t length = 0;DBG("\n");
+  DBG("len=");DBG(_len);
+  while(index < _len){
+    DBG("index=");DBG(index);
     if(_utf8[index] >= 0xfc){
       index++;
       for(uint8_t i=1;i<=5;i++){
@@ -577,14 +579,14 @@ uint8_t DFRobot_SpeechSynthesis_UART::sendCommand(uint8_t *data,uint8_t length)
 }
 uint8_t DFRobot_SpeechSynthesis_UART::readACK(){
 
-   uint8_t data = 0;
-      delay(10);
-	  DBG(data,HEX);
-   if(_s->available()) {
+  uint8_t data = 0;
+  delay(10);
+  //DBG(data,HEX);
+  if(_s->available()) {
      data = _s->read();
-     DBG(data,HEX);
-    }
-	DBG(data,HEX);
-   return data;
+     //DBG(data,HEX);
+  }
+  //DBG(data,HEX);
+  return data;
 
 }
