@@ -13,20 +13,33 @@
 #include <SoftwareSerial.h>
 SoftwareSerial Serial1(2, 3);  //RX, TX
 DFRobot_SpeechSynthesis_UART ss;
+
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
   Serial1.begin(115200);
+  //设置语音的音量大小为5
+  //ss.setVoice(5);
+  //设置语音的播放速度为5
+  //ss.setSpeed(5);
+  //设置发音人为女性
+  //ss.setSoundType(ss.FEMALE);
+  //设置音调为5
+  //ss.setTone(5);
+  //设置英文以单词发音
+  //ss.setEnglishPron(ss.WORD);
+
   //初始化语音合成传感器
-  //传入通信串口
-  ss.begin(Serial);
-    // 待合成的字符串
-  String str1="verifying flash memory 中国against put your setup code here,四川";
-  //合成语音
-  ss.speak(str1);
+  ss.begin(Serial1);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  ss.speak(F("黑灰化肥发灰黑会挥发"));
+  ss.speak(F("Hello, I'm Speech Synthesis module"));
+  ss.speak(F("duck不必"));
+  ss.speak(F("a b c d e f g"));
 
+  /*使用文本控制标识控制*/
+  //音量标识
+  //ss.speak(F("[v3]Hello [v8]world"));
+  //单词发音方式标识
+  //ss.speak(F("[h1]Hello [h2]world"));
 }

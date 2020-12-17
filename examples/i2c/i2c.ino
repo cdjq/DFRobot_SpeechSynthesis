@@ -28,14 +28,14 @@ void setup() {
 }
 
 void loop() {
-  ss.speak("黑灰化肥发灰黑会挥发");
-  ss.speak("Hello, I'm Speech Synthesis module");
-  ss.speak("duck不必");
-  ss.speak("a b c d e f g");
+  ss.speak(F("黑灰化肥发灰黑会挥发"));
+  ss.speak(F("Hello, I'm Speech Synthesis module"));
+  ss.speak(F("duck不必"));
+  ss.speak(F("a b c d e f g"));
 
   /*使用文本控制标识控制*/
   //音量标识
-  //ss.speak("[v3]Hello [v8]world");
+  //ss.speak(F("[v3]Hello [v8]world"));
   //单词发音方式标识
-  //ss.speak("[h1]Hello [h2]world");
+  //ss.speak(F("[h1]Hello [h2]world"));
 }
