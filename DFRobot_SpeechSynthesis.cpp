@@ -325,11 +325,17 @@ void DFRobot_SpeechSynthesis::speak(String word){
 
 }
 void DFRobot_SpeechSynthesis::wait(){
+#ifdef NRF5
 
+while(readACK()!=0x4F)//等待语音播放完成
+  {} 
+#else 
 while(readACK()!=0x41)//等待语音合成完成
   {}
 while(readACK()!=0x4F)//等待语音播放完成
   {} 
+  
+#endif
   /*
 readACK();
 readACK();
@@ -511,8 +517,21 @@ uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *data,uint8_t length)
 }
 uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
 
-   uint8_t data = 0;
-   delay(20);
+     uint8_t data = 0;
+     uint8_t data1 =0;
+     delay(20);
+#ifdef NRF5
+     _pWire->requestFrom(_deviceAddr, 2);
+     delay(10);
+     data = _pWire->read();
+	 data1 = _pWire->read();
+     DBG(data,HEX);
+	 DBG(data1,HEX);
+	if(data == 0x4f || data1 == 0x4F)
+        return 0x4f;
+     else 
+		 return data;
+#else
    _pWire->requestFrom(_deviceAddr, 1);
    delay(10);
   if(_pWire->available()) {
@@ -520,6 +539,8 @@ uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
      DBG(data,HEX);
     }
    return data;
+
+#endif
 }
 
 DFRobot_SpeechSynthesis_UART::DFRobot_SpeechSynthesis_UART(){
