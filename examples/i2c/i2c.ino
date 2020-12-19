@@ -12,6 +12,8 @@
 #include "DFRobot_SpeechSynthesis.h"
 DFRobot_SpeechSynthesis_I2C ss;
 void setup() {
+  //初始化语音合成传感器
+  ss.begin();
   //设置语音的音量大小为5
   //ss.setVoice(5);
   //设置语音的播放速度为5
@@ -22,9 +24,6 @@ void setup() {
   //ss.setTone(5);
   //设置英文以单词发音
   //ss.setEnglishPron(ss.WORD);
-
-  //初始化语音合成传感器
-  ss.begin();
 }
 
 void loop() {
