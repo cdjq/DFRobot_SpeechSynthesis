@@ -16,6 +16,9 @@ DFRobot_SpeechSynthesis_UART ss;
 
 void setup() {
   Serial1.begin(115200);
+  //初始化语音合成传感器
+  ss.begin(Serial1);
+  
   //设置语音的音量大小为5
   //ss.setVoice(5);
   //设置语音的播放速度为5
@@ -26,9 +29,6 @@ void setup() {
   //ss.setTone(5);
   //设置英文以单词发音
   //ss.setEnglishPron(ss.WORD);
-
-  //初始化语音合成传感器
-  ss.begin(Serial1);
 }
 
 void loop() {
