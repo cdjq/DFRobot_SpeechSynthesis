@@ -107,9 +107,12 @@ public:
     语音合成的声音的选择
   */
   typedef enum{
-   MALE,/**<男声>*/
-   FEMALE,/**<女声>*/
-   DONALDDUCK,/**<唐老鸭的声音>*/
+    FEMALE1,/**<女声1，推荐发音人>*/
+    MALE1,/**<男声1，推荐发音人>*/
+    FEMALE2,/**<女声2>*/
+    MALE2,/**<男声2>*/
+    DONALDDUCK,/**<唐老鸭的声音>*/
+    FEMALE3,/**<女声3>*/
   } eSoundType_t;
 
   /**

@@ -19,7 +19,7 @@ void setup() {
   //设置语音的播放速度为5
   //ss.setSpeed(5);
   //设置发音人为女性
-  //ss.setSoundType(ss.FEMALE);
+  //ss.setSoundType(ss.FEMALE1);
   //设置音调为5
   //ss.setTone(5);
   //设置英文以单词发音
