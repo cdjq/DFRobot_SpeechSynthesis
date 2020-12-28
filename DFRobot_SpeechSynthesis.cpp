@@ -468,7 +468,7 @@ uint8_t ack = 0;
     setVoice(5); 
     setSpeed(5); 
     setTone(5);  
-    setSoundType(FEMALE);
+    setSoundType(FEMALE1);
     setEnglishPron(WORD);
 }
 uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uint8_t length)
@@ -564,7 +564,7 @@ bool DFRobot_SpeechSynthesis_UART::begin(Stream &s){
     setVoice(5); 
     setSpeed(5); 
     setTone(5);  
-    setSoundType(FEMALE);
+    setSoundType(FEMALE1);
     setEnglishPron(WORD);
     return true;
    }
