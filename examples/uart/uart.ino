@@ -11,13 +11,13 @@
  */
 #include "DFRobot_SpeechSynthesis.h"
 #include <SoftwareSerial.h>
-SoftwareSerial Serial1(2, 3);  //RX, TX
+SoftwareSerial ssSerial1(2, 3);  //RX, TX
 DFRobot_SpeechSynthesis_UART ss;
 
 void setup() {
-  Serial1.begin(115200);
+  ssSerial1.begin(115200);
   //初始化语音合成传感器
-  ss.begin(Serial1);
+  ss.begin(ssSerial1);
   
   //设置语音的音量大小为5
   //ss.setVoice(5);
