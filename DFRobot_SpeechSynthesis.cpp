@@ -60,7 +60,9 @@ void DFRobot_SpeechSynthesis::setTone(uint8_t tone){
 void DFRobot_SpeechSynthesis::setSoundType(eSoundType_t type)
 {
   String str;
-  if(type == MALE1) {
+  if(type == FEMALE1){
+     str="[m3]";
+  }else if(type == MALE1){
      str="[m51]";
   }else if(type ==FEMALE2){
      str="[m52]";
@@ -70,8 +72,6 @@ void DFRobot_SpeechSynthesis::setSoundType(eSoundType_t type)
      str="[m54]";
   }else if(type == FEMALE3){
      str="[m55]";
-  }else(type == FEMALE1){
-     str="[m3]";
   }
   speakElish(str);
   DBG(str);
