@@ -1,5 +1,6 @@
 # DFRobot_SpeechSynthesis
-  
+
+让声音为你的项目增添一抹特色！连接上语音合成模块，再添加几行简单的代码就可以让您的项目开口说话。无论是中文还是英文对于语音合成模块来说都是so easy，播报当前时间，播报环境数据统统不在话下，与语音识别模块结合还可实现语音对话！该模块采用I2C和UART两种通讯方式，Gravity接口，兼容绝大部分主控。模块上已经自带了一个喇叭，所以您无需再额外的添加喇叭。
    
 ## Table of Contents
 
@@ -23,135 +24,46 @@ To use this library, first download the library file, paste it into the \Arduino
 
 ```C++
     
-  /**
-     @brief 构造函数
-     @param pWire I2C总线指针对象，构造设备，可传参数也可不传参数，默认Wire
-     @param address 7位I2C地址,由前三位决定地址的值，默认0x50
-  */
-  DFRobot_SpeechSynthesis();
-  
-  /**
-     @brief 语音合成函数
-     @param word 要合成的内容，可以是中文，英文，数字等
-  */
+ /**
+   *  @brief 语音合成函数
+   *  @param word 要合成的内容，可以是中文，英文，数字等
+   */
   void speak(String word);
-  
+
   /**
-     @brief 让传感器进入休眠状态
-  */
-  void sleep();
-  
-  /**
-     @brief 让传感器进入结束休眠状态
-  */
-  void wakeup();
-  
-  /**
-     @brief 设置语音的音量大小
-     @param voc,音量数值(0-9)
-  */
+   *  @brief 设置语音的音量大小
+   *  @param voc,音量数值(0-9)
+   */
   void setVoice(uint8_t voc);
-  
+
   /**
-     @brief 设置语音的播放速度
-     @param speed,速度数值(0-9)
-  */
+   *  @brief 设置语音的播放速度
+   *  @param speed,速度数值(0-9)
+   */
   void setSpeed(uint8_t speed);
 
   /**
-     @brief 设置声音种类
-     @param type(MALE:男,FEMALE:女,DONALDDUCK:唐老鸭)
-  */
+   *  @brief 设置声音种类
+   *  @param type(MALE:男,FEMALE:女,DONALDDUCK:唐老鸭)
+   */
   void setSoundType(eSoundType_t type);
 
   /**
-     @brief 设置音调
-     @param tone,音调数值(0-9)
+   *  @brief 设置音调
+   *  @param tone,音调数值(0-9)
   */
   void setTone(uint8_t tone);
 
   /**
-     @brief 设置英文发音
-     @param pron(ALPHABET:以字母单个发音,WORD:以单词发音)
-  */
+   *  @brief 设置英文发音
+   *  @param pron(ALPHABET:以字母单个发音,WORD:以单词发音)
+   */
   void setEnglishPron(eENpron_t pron);
-  
-  /**
-     @brief 恢复默认设置
-  */
-  void reset();
-  
-  /**
-     @brief 使能韵律的内容的处理
-     @param enable(true:处理,false:不处理)
-  */
-  void enableRhythm(bool enable);
-  
-  /**
-     @brief 设置号码中"1"的读音
-     @param pron(YAO:读作"yao",CHONE:读作"yi")
-  */
-  void setOnePron(eOnePron_t pron);
-  
-  /**
-     @brief 设置是否强制使用姓氏读音规则
-     @param pron(NAME：强制,AUTOJUDGEDN:自动判断)
-  */
-  void setNamePron(eNamePron_t pron);
-  
-  /**
-     @brief 设置号码中"0"的读音
-     @param pron(ZREO:读作"zero",OU:读作"ou")
-  */
-  void setZeroPron(eZeroPron_t pron);
-  
-  /**
-     @brief 设置阿拉伯数字、度量单位、特殊符号等合成为中文或英文
-     @param style(CHINESEL:中文,ENGLISHL:英文,AUTOJUDGEL:自动判断)
-  */
-  void setLanguage(eLanguage_t style);
-  
-  /**
-     @brief 使能拼音的合成
-     @param enable(true:使能,false:不使能)
-  */
-  void enablePINYIN(bool enable);
-  
-  /**
-     @brief 设置合成风格
-     @param enable(CATON:一字一顿,SMOOTH:流畅)
-  */
-  void setSpeechStyle(eSpeechStyle_t style);
-  
-  /**
-     @brief 设置一串数字的读法
-     @param pron(NUMBER:电话号码型,NUMERIC:数值型,AUTOJUDGED:自动判断)
-  */
-  void setDigitalPron(eDigitalPron_t pron);
-  
-  /**
-     @brief 停止合成
-  */
-  void stopSynthesis();
-  /**
-     @brief 暂停合成
-  */
-  void pauseSynthesis();
 
   /**
-     @brief 恢复合成
-  */
-  void recoverSynthesis();
-  
-  /**
-     @brief 等待语音合成完成
-  */
-  void wait();
-  
-  /**
-     @brief 合成英文字符串
-  */
-  void speakElish(String word);
+   *  @brief 恢复默认设置
+   */
+  void reset();
 ```
 
 ## Compatibility
