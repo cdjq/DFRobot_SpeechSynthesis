@@ -1,6 +1,6 @@
 # DFRobot_SpeechSynthesis
 
-让声音为你的项目增添一抹特色！连接上语音合成模块，再添加几行简单的代码就可以让您的项目开口说话。无论是中文还是英文对于语音合成模块来说都是so easy，播报当前时间，播报环境数据统统不在话下，与语音识别模块结合还可实现语音对话！该模块采用I2C和UART两种通讯方式，Gravity接口，兼容绝大部分主控。模块上已经自带了一个喇叭，所以您无需再额外的添加喇叭。
+Would you like to add voice to your projects? Connect up this Speech Synthesis module, add few couples of lines of code, then here goes, your project starts speaking. Both Chinese and English are "so easy" for this speech synthesis module. It also can broadcast the current time and environment data. Combining with a speech recognition module, you can easily have conversations with your projects! The module uses I2C and UART two communication modes, gravity interface, and is compatible with most main-controllers on the market. Besides, the module already comes with a speaker, so you don't need to buy one.
    
 ## Table of Contents
 
@@ -13,7 +13,7 @@
 
 ## Summary
 
-   1.合成语音<br>
+   1. Speech Synthesis <br>
 
 
 ## Installation
@@ -25,43 +25,43 @@ To use this library, first download the library file, paste it into the \Arduino
 ```C++
     
  /**
-   *  @brief 语音合成函数
-   *  @param word 要合成的内容，可以是中文，英文，数字等
+   *  @brief Speech Synthesis function 
+   *  @param word Content to be synthesized, it can be Chinese, English, number, etc. 
    */
   void speak(String word);
 
   /**
-   *  @brief 设置语音的音量大小
-   *  @param voc,音量数值(0-9)
+   *  @brief Set voice volume 
+   *  @param voc, Volume value(0-9)
    */
   void setVoice(uint8_t voc);
 
   /**
-   *  @brief 设置语音的播放速度
-   *  @param speed,速度数值(0-9)
+   *  @brief Set playback speed 
+   *  @param speed, speed value (0-9)
    */
   void setSpeed(uint8_t speed);
 
   /**
-   *  @brief 设置声音种类
-   *  @param type(MALE:男,FEMALE:女,DONALDDUCK:唐老鸭)
+   *  @brief Set voice type 
+   *  @param type(MALE:male,FEMALE:female,DONALDDUCK:Donaldduck)
    */
   void setSoundType(eSoundType_t type);
 
   /**
-   *  @brief 设置音调
-   *  @param tone,音调数值(0-9)
+   *  @brief Set tone 
+   *  @param tone, tone value(0-9)
   */
   void setTone(uint8_t tone);
 
   /**
-   *  @brief 设置英文发音
-   *  @param pron(ALPHABET:以字母单个发音,WORD:以单词发音)
+   *  @brief Set English Pronounce mode 
+   *  @param pron(ALPHABET: letter, WORD: word)
    */
   void setEnglishPron(eENpron_t pron);
 
   /**
-   *  @brief 恢复默认设置
+   *  @brief Reset setting to default 
    */
   void reset();
 ```
@@ -79,8 +79,8 @@ micro:bit        |      √       |              |             |
 
 ## History
 
-- data 2020-11-6
-- version V1.0
+- Data 2020-11-6
+- Version V1.0
 
 
 ## Credits
