@@ -1,6 +1,6 @@
 /*!
    @file DFRobot_SpeechSynthesis.h
-   @brief DFRobot_SpeechSynthesis 类的基础结构
+   @brief Basic structure of DFRobot_SpeechSynthesis class
    @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
    @licence     The MIT License (MIT)
    @author [fengli](li.feng@dfrobot.com)
@@ -26,7 +26,7 @@
 #define DBG(...)
 #endif
 
-#define I2C_ADDR               0x40  //i2c地址
+#define I2C_ADDR               0x40  //i2c address
 #define INQUIRYSTATUS          0x21
 #define ENTERSAVEELETRI        0x88
 #define WAKEUP                 0xFF
@@ -46,15 +46,15 @@ public:
 
 
   /**！
-    语音合成风格
+    Speech Synthesis style 
   */
   typedef enum{
-    CATON,/**<一字一顿>*/
-    SMOOTH,/**<流畅>*/
+    CATON,/**<Word by word>*/
+    SMOOTH,/**<Fluently>*/
   } eSpeechStyle_t;
   
   /**
-    是否合成拼音
+    Whether synthesize PinYin
   */
   typedef enum{
     PINYIN_ENABLE,/**<合成>*/
