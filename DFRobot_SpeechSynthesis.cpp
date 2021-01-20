@@ -1,7 +1,7 @@
 #include "DFRobot_SpeechSynthesis.h"
 /*!
    @file DFRobot_SpeechSynthesis.h
-   @brief DFRobot_SpeechSynthesis 类的实现
+   @brief Implementation of DFRobot_SpeechSynthesis class
    @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
    @licence     The MIT License (MIT)
    @author [fengli](li.feng@dfrobot.com)
