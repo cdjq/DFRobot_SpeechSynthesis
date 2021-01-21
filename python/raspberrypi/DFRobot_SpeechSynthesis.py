@@ -91,7 +91,7 @@ class DFRobot_SpeechSynthesis(object):
       self.wait()
       return
   '''
-    @brief 等待语音合成完成
+    @brief Wait for speech synthesis to complete 
   '''
   def wait(self):
       while 1:
@@ -103,8 +103,8 @@ class DFRobot_SpeechSynthesis(object):
         if(result == 0x4f):
           break
   '''
-    @brief 设置语音的音量大小
-    @param voc,音量数值(0-9)
+    @brief Set voice volume 
+    @param voc, Volume value(0-9)
   '''
   def setVoice(self, voc):
       list1 = [0xfd,0x00,0x06,0x01,0x00,91,118,49,93]
@@ -113,8 +113,8 @@ class DFRobot_SpeechSynthesis(object):
       list1[7]= voc + 48
       self.write_cmd(list1)
   '''
-    @brief 设置语音的播放速度
-    @param speed,速度数值(0-9)
+    @brief Set playback speed 
+    @param speed, Speed(0-9)
   '''
   def setSpeed(self, speed):
       list1 = [0xfd,0x00,0x06,0x01,0x00,91,115,54,93]
@@ -124,8 +124,8 @@ class DFRobot_SpeechSynthesis(object):
       list1[7]= speed + 48
       self.write_cmd(list1)
   '''
-    @brief 设置声音种类
-    @param type(MALE:男,FEMALE:女,DONALDDUCK:唐老鸭)
+    @brief Set voice type 
+    @param type(MALE:male, FEMALE:famale, DONALDDUCK:Donaldduck)
   '''
   def setSoundType(self, type):
       if(type == MEAL):
@@ -137,8 +137,8 @@ class DFRobot_SpeechSynthesis(object):
       else:
         print("no that type")
   '''
-    @brief 设置音调
-    @param tone,音调数值(0-9)
+    @brief Set tone 
+    @param tone, Tone(0-9)
   '''
   def setTone(self, tone):
       list1 = [0xfd,0x00,0x06,0x01,0x00,91,116,54,93]
@@ -147,8 +147,8 @@ class DFRobot_SpeechSynthesis(object):
       list1[7]= tone + 48
       self.write_cmd(list1)
   '''
-    @brief 设置英文发音
-    @param pron(ALPHABET:以字母单个发音,WORD:以单词发音)
+    @brief Set how to read English 
+    @param pron(ALPHABET: letter, WORD: word)
   '''
   def setEnglishPron(self, pron):  
      if(pron == ALPHABET):
@@ -156,8 +156,8 @@ class DFRobot_SpeechSynthesis(object):
      elif(pron == WORD):
        self.speak("[h2]")
   '''
-     @brief 使能韵律的内容的处理
-     @param enable(true:处理,false:不处理)
+     @brief This function is only used for reading Chinese
+     @param enable(true;alse)
   '''
   def enableRhythm(self,enable):
      if(enable == True):
@@ -166,8 +166,8 @@ class DFRobot_SpeechSynthesis(object):
         str1="[z0]"
      self.speak(str1)
   '''
-     @brief 设置一串数字的读法
-     @param pron(NUMBER:电话号码型,NUMERIC:数值型,AUTOJUDGED:自动判断)
+     @brief Set how to read long numbers 
+     @param pron(NUMBER: phone number, NUMERIC: number, AUTOJUDGED: auto judge)
   '''
   def setDigitalPron(self,pron):
      if(pron == NUMBER):
@@ -178,8 +178,8 @@ class DFRobot_SpeechSynthesis(object):
         str1="[n0]"
      self.speak(str1)
   '''
-     @brief 使能拼音的合成
-     @param enable(true:使能,false:不使能)
+     @brief Enable PinYin synthesis 
+     @param enable(true: enable, false:disable)
   '''
   def enablePINYIN(self,enable):
      if(enable == True):
@@ -188,8 +188,8 @@ class DFRobot_SpeechSynthesis(object):
         str1="[i0]"
      self.speak(str1)
   '''
-     @brief 设置合成风格
-     @param enable(CATON:一字一顿,SMOOTH:流畅)
+     @brief Set synthesis style 
+     @param enable(CATON: word by word; SMOOTH: fluently)
   '''
   def setSpeechStyle(self,style):
      if(style == CATON):
@@ -198,8 +198,8 @@ class DFRobot_SpeechSynthesis(object):
        str1="[f1]"
      self.speak(str1)
   '''
-     @brief 设置阿拉伯数字、度量单位、特殊符号等合成为中文或英文
-     @param style(CHINESEL:中文,ENGLISHL:英文,AUTOJUDGEL:自动判断)
+     @brief Synthesize Arabic number, unit, special characters into Chinese or English 
+     @param style(CHINESEL:Chinese, ENGLISHL: English, AUTOJUDGEL: Auto judge)
   '''
   def setLanguage(self,style):
     if(style == CHINESEL):
@@ -210,8 +210,8 @@ class DFRobot_SpeechSynthesis(object):
        str1="[g0]"
     self.speak(str1)
   '''
-     @brief 设置号码中"0"的读音
-     @param pron(ZREO:读作"zero",OU:读作"ou")
+     @brief Set how to read "0" in phone number 
+     @param pron(ZREO: read as "zero"; OU: read as "ou")
   '''
   def setZeroPron(self,pron):
      if(pron == ZREO):
@@ -220,8 +220,8 @@ class DFRobot_SpeechSynthesis(object):
         str1="[o1]"
      self.speak(str1)
   '''
-    @brief 设置号码中"1"的读音
-    @param pron(YAO:读作"yao",CHONE:读作"yi")
+    @brief Set how to read "1" in phone number 
+    @param pron(YAO: read as "yao"; CHONE: read as "yi")
   '''
   def setOnePron(self,pron):
      if(pron == YAO):
@@ -230,8 +230,8 @@ class DFRobot_SpeechSynthesis(object):
         str1="[y1]"
      self.speak(str1)
   '''
-     @brief 设置是否强制使用姓氏读音规则
-     @param pron(NAME：强制,AUTOJUDGEDN:自动判断)
+     @brief Set whether to use surname reading principle mandatorily 
+     @param pron(NAME: mandatory; AUTOJUDGEDN: auto judge)
   '''
   def setNamePron(self,pron):
      if(pron == NAME):
@@ -240,13 +240,13 @@ class DFRobot_SpeechSynthesis(object):
         str1="[r0]"
      self.speak(str1)
   '''
-     @brief 测试函数
+     @brief Test function 
   '''
   def test(self ):
     data = [0xfd,0x00,0x0C,0x01,0x00,66,67,68,69,70,71,72,73,74,75]
     self.write_cmd(data)
   '''
-    @brief 恢复默认设置
+    @brief Reset settings to default
   '''
   def reset(self):
     speakElish("[d]");
