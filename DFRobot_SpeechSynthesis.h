@@ -96,11 +96,11 @@ public:
   } eOnePron_t;
   
   /**
-    How to read surname 
+   The function is only used for Chinese reading  
   */
   typedef enum{
-    NAME,/**<强制把所有的姓的汉字读作姓的读法>*/
-    AUTOJUDGEDN,/**<Auto Judge>*/
+    NAME,
+    AUTOJUDGEDN,
   } eNamePron_t;
   
   /**
@@ -189,8 +189,8 @@ public:
   void reset();
   
   /**
-     @brief 使能韵律的内容的处理
-     @param enable(true:处理,false:不处理)
+     @brief  The function is only used for Chinese reading
+     @param enable(true,false)
   */
   void enableRhythm(bool enable);
   
