@@ -57,70 +57,70 @@ public:
     Whether synthesize PinYin
   */
   typedef enum{
-    PINYIN_ENABLE,/**<合成>*/
-    PINYIN_DISABLE,/**<不合成>*/
+    PINYIN_ENABLE,/**<Synthesize PinYin>*/
+    PINYIN_DISABLE,/**<Not>*/
   } ePinyin_t;
   
   /**
-    设置阿拉伯数字、度量单位、特殊符号等合成为中文或英文
+    Synthesize Arabic number, unit, special character into Chinese or English 
   */
   typedef enum{
-    CHINESEL,/**<成为中文>*/
-    ENGLISHL,/**<成为英文>*/
-    AUTOJUDGEL,/**<自动判断>*/
+    CHINESEL,/**<Chinese>*/
+    ENGLISHL,/**<English>*/
+    AUTOJUDGEL,/**<Auto Judge>*/
   } eLanguage_t;
   
   /**
-    一串数字的读法
+   How to  read long numbers 
   */
   typedef enum{
-    NUMBER,/**<电话号码>*/
-    NUMERIC,/**<数值>*/
-    AUTOJUDGED,/**<自动判断>*/
+    NUMBER,/**<Telephone number>*/
+    NUMERIC,/**<Number>*/
+    AUTOJUDGED,/**<Auto Judge>*/
   } eDigitalPron_t;
   
   /**
-    语音合成时"零"的读法
+   How to read "0" 
   */
   typedef enum{
-    ZREO,/**<读作'zero'>*/
-    OU,/**<读作'ou'>*/
+    ZREO,/**<Read as 'zero'>*/
+    OU,/**<Read as'ou'>*/
   } eZeroPron_t;
 
   /**
-    语音合成时"一"的读法
+    How to read "1" 
   */
   typedef enum{
-    YAO,/**<读作'yao'>*/
-    CHONE,/**<读作'yi'>*/
+    YAO,/**<Read as 'yao'>*/
+    CHONE,/**<Read as 'yi'>*/
   } eOnePron_t;
   
   /**
-    姓的读法
+    How to read surname 
   */
   typedef enum{
     NAME,/**<强制把所有的姓的汉字读作姓的读法>*/
-    AUTOJUDGEDN,/**<自动判断>*/
+    AUTOJUDGEDN,/**<Auto Judge>*/
   } eNamePron_t;
   
   /**
-    语音合成的声音的选择
+    Select sound type 
   */
   typedef enum{
-    FEMALE1,/**<女声1，推荐发音人>*/
-    MALE1,/**<男声1，推荐发音人>*/
-    FEMALE2,/**<女声2>*/
-    MALE2,/**<男声2>*/
-    DONALDDUCK,/**<唐老鸭的声音>*/
-    FEMALE3,/**<女声3>*/
+    FEMALE1,/**<Female 1, recommended>*/
+    MALE1,/**<Male 1, recommended>*/
+    FEMALE2,/**<Female 2>*/
+    MALE2,/**<Male 2>*/
+    DONALDDUCK,/**<Donald Duck>*/
+    FEMALE3,/**<Female 3>*/
   } eSoundType_t;
 
   /**
-    英文的阅读方式
+    How to read English 
   */
   typedef enum{
-   ALPHABET,/**<拼写>*/
-   WORD,/**<单词>*/
+   ALPHABET,/**<Spell>*/
+   WORD,/**<word>*/
   } eENpron_t;
   
   typedef enum{
@@ -131,60 +131,60 @@ public:
   
 public:
   /**
-     @brief 构造函数
-     @param pWire I2C总线指针对象，构造设备，可传参数也可不传参数，默认Wire
-     @param address 7位I2C地址,由前三位决定地址的值，默认0x50
+     @brief Constructor 
+     @param pWire I2C BUS pointer object， construct device, can pass parameter or not, default to Wire
+     @param address 7bits I2C address, the first three bits determine the value of the address, default to 0x50
   */
   DFRobot_SpeechSynthesis();
   
   /**
-     @brief 语音合成函数
-     @param word 要合成的内容，可以是中文，英文，数字等
+     @brief Speech synthesis function 
+     @param word Content to be synthesized, could be Chinese, English, Number, etc. 
   */
   void speak(String word);
   
   /**
-     @brief 让传感器进入休眠状态
+     @brief Set sensor to sleep mode 
   */
   void sleep();
   
   /**
-     @brief 让传感器进入结束休眠状态
+     @brief Wake up sensor from sleep mode 
   */
   void wakeup();
   
   /**
-     @brief 设置语音的音量大小
-     @param voc,音量数值(0-9)
+     @brief Set voice volume
+     @param voc, Volume value(0-9)
   */
   void setVoice(uint8_t voc);
   
   /**
-     @brief 设置语音的播放速度
-     @param speed,速度数值(0-9)
+     @brief Set playback speed 
+     @param speed, Speed value (0-9)
   */
   void setSpeed(uint8_t speed);
 
   /**
-     @brief 设置声音种类
-     @param type(MALE:男,FEMALE:女,DONALDDUCK:唐老鸭)
+     @brief Set sound type 
+     @param type(MALE:Male, FEMALE:Female, DONALDDUCK: Donaldduck)
   */
   void setSoundType(eSoundType_t type);
 
   /**
-     @brief 设置音调
-     @param tone,音调数值(0-9)
+     @brief Set tone 
+     @param tone, Tone value (0-9)
   */
   void setTone(uint8_t tone);
 
   /**
-     @brief 设置英文发音
-     @param pron(ALPHABET:以字母单个发音,WORD:以单词发音)
+     @brief Set how to read English 
+     @param pron(ALPHABET: letter, WORD: word)
   */
   void setEnglishPron(eENpron_t pron);
   
   /**
-     @brief 恢复默认设置
+     @brief Reset settings to default 
   */
   void reset();
   
@@ -195,68 +195,68 @@ public:
   void enableRhythm(bool enable);
   
   /**
-     @brief 设置号码中"1"的读音
-     @param pron(YAO:读作"yao",CHONE:读作"yi")
+     @brief Set how to read "1" in phone number 
+     @param pron(YAO: read as "yao", CHONE: read as "yi")
   */
   void setOnePron(eOnePron_t pron);
   
   /**
-     @brief 设置是否强制使用姓氏读音规则
-     @param pron(NAME：强制,AUTOJUDGEDN:自动判断)
+     @brief Set whether to use surname reading principle mandatorily 
+     @param pron(NAME: force, AUTOJUDGEDN: auto judge)
   */
   void setNamePron(eNamePron_t pron);
   
   /**
-     @brief 设置号码中"0"的读音
-     @param pron(ZREO:读作"zero",OU:读作"ou")
+     @brief Set how to read "0" in phone number 
+     @param pron(ZREO: read as "zero", OU: read as "ou")
   */
   void setZeroPron(eZeroPron_t pron);
   
   /**
-     @brief 设置阿拉伯数字、度量单位、特殊符号等合成为中文或英文
-     @param style(CHINESEL:中文,ENGLISHL:英文,AUTOJUDGEL:自动判断)
+     @brief  Synthesize Arabic number, unit, special character into Chinese or English 
+     @param style(CHINESEL: Chinese, ENGLISHL: English, AUTOJUDGEL: Auto judge)
   */
   void setLanguage(eLanguage_t style);
   
   /**
-     @brief 使能拼音的合成
-     @param enable(true:使能,false:不使能)
+     @brief Enable PinYin Synthesis 
+     @param enable(true: enable, false: disable)
   */
   void enablePINYIN(bool enable);
   
   /**
-     @brief 设置合成风格
-     @param enable(CATON:一字一顿,SMOOTH:流畅)
+     @brief Set synthesis style 
+     @param enable(CATON: word by word, SMOOTH: fluently)
   */
   void setSpeechStyle(eSpeechStyle_t style);
   
   /**
-     @brief 设置一串数字的读法
-     @param pron(NUMBER:电话号码型,NUMERIC:数值型,AUTOJUDGED:自动判断)
+     @brief Set how to read long numbers 
+     @param pron(NUMBER: phone number, NUMERIC: number, AUTOJUDGED: Auto judge)
   */
   void setDigitalPron(eDigitalPron_t pron);
   
   /**
-     @brief 停止合成
+     @brief Stop synthesis 
   */
   void stopSynthesis();
   /**
-     @brief 暂停合成
+     @brief Synthesis pause
   */
   void pauseSynthesis();
 
   /**
-     @brief 恢复合成
+     @brief Recover synthesis 
   */
   void recoverSynthesis();
   
   /**
-     @brief 等待语音合成完成
+     @brief Wait for speech synthesis to complete 
   */
   void wait();
   
   /**
-     @brief 合成英文字符串
+     @brief Synthesize English char string
   */
   void speakElish(String word);
 private:
