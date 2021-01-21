@@ -32,7 +32,7 @@ void setup() {
 }
 
 void loop() {
-  ss.speak(F("黑灰化肥发灰黑会挥发"));
+  ss.speak(F("She sells seashells by the seashore"));
   ss.speak(F("Hello, I'm Speech Synthesis module"));
   ss.speak(F("duck不必"));
   ss.speak(F("a b c d e f g"));
