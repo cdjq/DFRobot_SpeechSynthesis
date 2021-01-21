@@ -1,10 +1,10 @@
-# DFRobot SpeechSynthesis concentration sensor
+## DFRobot Speech Synthesis Module
 
 
 
-## DFRobot SpeechSynthesis Library for RaspberryPi
+## DFRobot Speech Synthesis Module Library for RaspberryPi
 
-Provide the Raspberry Pi library for the DFRobot_alcohol module.
+Provide the Raspberry Pi library for the DFRobot_Speech Synthesis module.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ Provide the Raspberry Pi library for the DFRobot_alcohol module.
 
 ## Summary
 
-   1.合成语音<br>
+   1.Speech Synthesis <br>
 
 ## Feature
 
@@ -39,40 +39,40 @@ $> python get_alcohol_data.py
 
   def speak(self ,string):
     '''
-      @brief 合成语音
-      @param string: 要合成的内容，可以是中文，英文，数字等
+      @brief Speech Synthesis
+      @param string: Content to be synthesized, could be Chinese, English, number, etc. 
     '''
 
   def setVoice(self, voc):
     '''
-      @brief 设置语音的音量大小
-      @param voc: 音量数值(0-9)
+      @brief Set voice volume 
+      @param voc: Volume(0-9)
     '''
   def setSpeed(self, speed):
     '''
-      @brief 设置语音的播放速度
-      @param speed: 速度数值(0-9)
+      @brief Set playback speed 
+      @param speed: Speed (0-9)
     '''
   def setSoundType(self, type):
     '''
-      @brief 设置声音种类
-      @param type:(MALE:男,FEMALE:女,DONALDDUCK:唐老鸭)
+      @brief Set voice type 
+      @param type:(MALE:male, FEMALE:female, DONALDDUCK: DonaldDuck)
     '''
   def setTone(self, tone):
     '''
-      @brief 设置音调
-      @param tone:音调数值(0-9)
+      @brief Set tone 
+      @param tone: Tone(0-9)
     '''
   def setEnglishPron(self, pron): 
     '''
-      @brief 设置英文发音
-      @param pron:(ALPHABET:以字母单个发音,WORD:以单词发音)
+      @brief Set how to read English 
+      @param pron:(ALPHABET: letter, WORD: word)
     '''
 ```
 ## History
 
-- data 2020-11-6
-- version V1.0
+- Data 2020-11-6
+- Version V1.0
 
 
 ## Credits
