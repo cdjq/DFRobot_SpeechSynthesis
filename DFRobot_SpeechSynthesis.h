@@ -276,7 +276,7 @@ private:
   void sendPack(uint8_t cmd,uint8_t* data =NULL,uint16_t len = 0);
 
   virtual uint8_t sendCommand(uint8_t *data,uint8_t length)=0;
-  virtual uint8_t sendCommand(uint8_t *head,uint8_t *data,uint8_t length)=0;
+  virtual uint8_t sendCommand(uint8_t *head,uint8_t *data,uint16_t length)=0;
 
 };
 
@@ -292,7 +292,7 @@ private:
   //Stream none;
   uint8_t readACK();
   uint8_t sendCommand(uint8_t *data,uint8_t length);
-  uint8_t sendCommand(uint8_t *head,uint8_t *data,uint8_t length);
+  uint8_t sendCommand(uint8_t *head,uint8_t *data,uint16_t length);
 };
 
 
@@ -305,7 +305,7 @@ public:
 private:
   uint8_t readACK();
   uint8_t sendCommand(uint8_t *data,uint8_t length);
-  uint8_t sendCommand(uint8_t *head,uint8_t *data,uint8_t length);
+  uint8_t sendCommand(uint8_t *head,uint8_t *data,uint16_t length);
   
   Stream *_s;
   uint32_t _baudRate;

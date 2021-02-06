@@ -257,11 +257,15 @@ void DFRobot_SpeechSynthesis::speak(String word){
         utf8State--;
         _index++;
          }
+         if(_utf8[_index] == 239){
+	//Serial.println("aaaa");
+	      lanChange = true;
+	     }
         lastState = CHINESE;
         DBG(_index);DBG(uni);
        _unicode[point++] = uni & 0xff;
        _unicode[point++] = uni >> 8  ;
-	   if(point ==  24) lanChange = true;
+	   //if(point ==  24) lanChange = true;
 		}
       }else if(_utf8[_index] >= 0xc0){
         curState = CHINESE;
@@ -281,7 +285,7 @@ void DFRobot_SpeechSynthesis::speak(String word){
 	  lastState = CHINESE;
        _unicode[point++] = uni & 0xff;
        _unicode[point++] = uni >> 8  ;
-	   if(point ==  24) lanChange = true;
+	   //if(point ==  24) lanChange = true;
 		}
       }else if(_utf8[_index] <=0x80){
         curState = ENGLISH;
@@ -292,7 +296,7 @@ void DFRobot_SpeechSynthesis::speak(String word){
        _unicode[point++] = (_utf8[_index]&0x7f);
        _index++;
        lastState = ENGLISH;
-       if((point ==  24) || (_utf8[_index] == 0x20)|| (_utf8[_index] == 0x2c)) lanChange = true;
+       if(/*(point ==  24) || */(_utf8[_index] == 0x20)|| (_utf8[_index] == 0x2c)) lanChange = true;
        }
       } 
    if(lanChange == true){
@@ -332,7 +336,13 @@ void DFRobot_SpeechSynthesis::speak(String word){
 
 }
 void DFRobot_SpeechSynthesis::wait(){
-#ifdef NRF5
+#if defined(NRF5) || defined(ARDUINO_SAM_ZERO)
+
+
+
+
+
+
 
 while(readACK()!=0x4F)//等待语音播放完成
   {} 
@@ -471,19 +481,34 @@ uint8_t ack = 0;
     setSoundType(FEMALE1);
     setEnglishPron(WORD);
 }
-uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uint8_t length)
+uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uint16_t length)
 {
-   //_pWire->requestFrom(_deviceAddr, 2);
-  // delay(10);
-  // while (_pWire->available()) {
-   //  _pWire->read();
-    //}
+	 uint16_t lenTemp = 0;
+//Serial.println(length);
   _pWire->beginTransmission(_deviceAddr);
   for(uint8_t i =0;i<5;i++){
      _pWire->write(head[i]);
   }
-  for(uint8_t i =0;i<length;i++){
-   _pWire->write(data[i]);
+  _pWire->endTransmission();
+  
+  
+  while(length){
+     if(length > 28){
+        lenTemp =28;
+     } else {
+        lenTemp = length;
+    }
+
+     _pWire->beginTransmission(_deviceAddr);
+     for(uint8_t i =0;i<lenTemp;i++){
+      _pWire->write(data[i]);
+     }
+     if( _pWire->endTransmission() != 0 ) {
+         DBG("ERR_DATA_BUS");
+         return ERR_DATA_BUS;
+     }
+     length -= lenTemp;
+     data += lenTemp;
   }
 #ifdef ENABLE_DBG
   Serial.println();
@@ -497,10 +522,10 @@ uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uin
   }
   Serial.println();
 #endif
-  if( _pWire->endTransmission() != 0 ) {
-      DBG("ERR_DATA_BUS");
-      return ERR_DATA_BUS;
-  }
+  // if( _pWire->endTransmission() != 0 ) {
+      // DBG("ERR_DATA_BUS");
+      // return ERR_DATA_BUS;
+  // }
 
 
   return ERR_OK;
@@ -527,7 +552,8 @@ uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
      uint8_t data = 0;
      uint8_t data1 =0;
      delay(20);
-#ifdef NRF5
+
+#if defined(NRF5) || defined(ARDUINO_SAM_ZERO)
      _pWire->requestFrom(_deviceAddr, 2);
      delay(10);
      data = _pWire->read();
@@ -570,7 +596,7 @@ bool DFRobot_SpeechSynthesis_UART::begin(Stream &s){
    }
    
 }
-uint8_t DFRobot_SpeechSynthesis_UART::sendCommand(uint8_t *head,uint8_t *data,uint8_t length)
+uint8_t DFRobot_SpeechSynthesis_UART::sendCommand(uint8_t *head,uint8_t *data,uint16_t length)
 {
    while (_s->available()) {
      _s->read();
